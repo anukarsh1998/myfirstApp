@@ -9,12 +9,14 @@ router.get('/', function(req, res, next) {
 
 router.get('/records',(request, response)=>{
 
-  pool.query('')
+  pool.query('select sfid,name from salesforce.contact')
   .then((queryResult) => {
     console.log('queryResult rpws'+JSON.stringify(queryResult.rows));
+    response.send(queryResult.rows);
   })
   .catch((queryError) => {
     console.log('queryErro : '+queryError);
+    response.send(queryError);
   })
 
 });
